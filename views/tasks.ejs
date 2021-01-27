@@ -1,0 +1,16 @@
+<ul>
+  <% tasks.forEach((task)=> { %>
+  <li>
+    <div><p>Name: <%= task.name %></p></div>
+    <div><p>Due date: <%= task.dueDate %></p></div>
+    <div class="task-form">
+      <form action="/<%= task.id %>" method="get">
+        <button type="submit">Update</button>
+      </form>
+      <form action="/delete/<%= task.id %>" method="get">
+        <button type="submit">Delete</button>
+      </form>
+    </div>
+  </li>
+  <% });%>
+</ul>
