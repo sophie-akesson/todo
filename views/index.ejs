@@ -1,5 +1,19 @@
-<%- include ("header"); -%>
-<main>
-    <h1>To do</h1>
-</main>
-<%- include ("footer"); -%>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To do</title>
+  </head>
+  <body>
+    <div id="container">
+      <header>
+        <h1>To do</h1>
+      </header>
+      <main>
+        <%- include ("tasks"); -%>
+      </main>
+      <footer><%- include ("addtask"); -%></footer>
+    </div>
+  </body>
+</html>
