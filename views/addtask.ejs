@@ -2,6 +2,11 @@
     <label for="nameInput">Name:</label>
     <input type="text" name="nameInput" id="nameInput">
     <label for="dateInput">Due date:</label>
-    <input type="date" name="dateInput">
+    <% let now = new Date(); %>
+    <% let dd = String(now.getDate()).padStart(2, "0"); %>
+    <% let mm = String(now.getMonth() + 1).padStart(2, "0"); %>
+    <% let yyyy = now.getFullYear(); %>
+    <% let defaultDate = `${yyyy}-${mm}-${dd}`; %>
+    <input type="date" name="dateInput" value="<%= defaultDate %>">
     <button type="submit">Add task</button>
 </form>

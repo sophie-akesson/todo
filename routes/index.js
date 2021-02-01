@@ -11,6 +11,16 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    const tasks = await Task.find();
+    const taskId = req.params.id;
+    res.render("edit.ejs", { tasks, taskId });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 router.post("/new", async (req, res) => {
   try {
     const newTask = new Task({
@@ -22,6 +32,18 @@ router.post("/new", async (req, res) => {
   } catch (err) {
     const tasks = await Task.find();
     res.render("index.ejs", { tasks, message: err });
+    console.log(err);
+  }
+});
+
+router.post("/edit/:id", async (req, res) => {
+  try {
+    const changedTask = await Task.updateOne(
+      { _id: req.params.id },
+      { name: req.body.editName, dueDate: req.body.editDate }
+    );
+    res.redirect(301, "/");
+  } catch (err) {
     console.log(err);
   }
 });

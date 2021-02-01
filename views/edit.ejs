@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To do</title>
+  </head>
+  <body>
+    <div id="container">
+      <header>
+        <h1>To do</h1>
+      </header>
+      <main>
+        <ul>
+          <% if (tasks.length > 0) { %> <% tasks.forEach((task)=> { %>
+          <li>
+            <% if (taskId != task.id) { %>
+            <div><p>Name: <%= task.name %></p></div>
+            <div><p>Due date: <%= task.dueDate %></p></div>
+            <% } %>
+            <div class="task-form">
+              <% if (taskId == task.id) { %>
+              <form action="/edit/<%= task.id %>" method="post">
+                <label for="editName">Name: </label>
+                <input
+                  type="text"
+                  name="editName"
+                  id="editName"
+                  value="<%= task.name %>"
+                />
+                <label for="editDate">Due date: </label>
+                <input
+                  type="date"
+                  name="editDate"
+                  value="<%= task.dueDate %>"
+                />
+                <button type="submit">Save</button>
+              </form>
+              <a href="/">Cancel</a>
+              <% } %> <% if (taskId != task.id) { %>
+              <form action="/<%= task.id %>" method="get">
+                <button type="submit">Edit</button>
+              </form>
+              <% } %>
+              <form action="/delete/<%= task.id %>" method="get">
+                <button type="submit">Delete</button>
+              </form>
+            </div>
+          </li>
+          <% });%> <% } else { %>
+          <li>You have no tasks.</li>
+          <% } %>
+        </ul>
+      </main>
+      <footer><%- include ("addtask"); -%></footer>
+    </div>
+  </body>
+</html>

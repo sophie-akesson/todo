@@ -11,7 +11,26 @@
         <h1>To do</h1>
       </header>
       <main>
-        <%- include ("tasks"); -%>
+        <ul>
+          <% if (tasks.length > 0) { %>
+            <% tasks.forEach((task)=> { %> 
+              <li>
+                <div><p>Name: <%= task.name %></p></div>
+                <div><p>Due date: <%= task.dueDate %></p></div>
+                <div class="task-form">
+                  <form action="/<%= task.id %>" method="get">
+                    <button type="submit">Edit</button>
+                  </form>
+                  <form action="/delete/<%= task.id %>" method="get">
+                    <button type="submit">Delete</button>
+                  </form>
+                </div>
+              </li>
+            <% });%>
+          <% } else { %>
+            <li>You have no tasks.</li>
+          <% } %>
+        </ul>        
       </main>
       <footer><%- include ("addtask"); -%></footer>
     </div>
