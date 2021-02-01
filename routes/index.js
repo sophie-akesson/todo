@@ -20,7 +20,17 @@ router.post("/new", async (req, res) => {
     const savedTask = await newTask.save();
     res.redirect(301, "/");
   } catch (err) {
-    const tasks = await Product.find();
+    const tasks = await Task.find();
+    res.render("index.ejs", { tasks, message: err });
+    console.log(err);
+  }
+});
+
+router.get("/delete/:id", async (req, res) => {
+  try {
+    await Task.deleteOne({_id:req.params.id});
+    res.redirect(301, "/");
+  } catch (err) {
     res.render("index.ejs", { tasks, message: err });
     console.log(err);
   }
