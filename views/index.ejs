@@ -15,25 +15,27 @@
           <% if (tasks.length > 0) { %>
             <% tasks.forEach((task)=> { %> 
               <li>
-                <form action="/delete/<%= task.id %>" method="get">
+                <form action="/delete?id=<%= task.id %>&page=<%= currentPage %>" method="post">
                   <input type="checkbox" name="checkbox" onChange="this.form.submit()">
                 </form>
                 <div><p>Name: <%= task.name %></p></div>
                 <div><p>Due date: <%= task.dueDate %></p></div>
-                <div class="task-form">
-                  <form action="/<%= task.id %>" method="get">
-                    <button type="submit">Edit</button>
-                  </form>
-                  <form action="/delete/<%= task.id %>" method="get">
-                    <button type="submit">Delete</button>
-                  </form>
+                <div class="task-links">
+                  <a href="/edit?id=<%= task.id %>&page=<%= currentPage %>">Edit</a>
+                  <a href="/delete?id=<%= task.id %>&page=<%= currentPage %>">Delete</a>
                 </div>
               </li>
             <% });%>
           <% } else { %>
             <li>You have no tasks.</li>
           <% } %>
-        </ul>        
+        </ul>
+        <% if (currentPage > 1) { %>
+        <a href="/?page=<%= currentPage - 1 %>"><< Previous page</a>
+        <% } %>
+        <% if (currentPage < totalPages) { %>
+        <a href="/?page=<%= currentPage + 1 %>">Next page >></a>
+        <% } %>        
       </main>
       <footer><%- include ("addtask"); -%></footer>
     </div>
