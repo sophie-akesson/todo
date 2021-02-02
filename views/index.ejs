@@ -15,6 +15,9 @@
           <% if (tasks.length > 0) { %>
             <% tasks.forEach((task)=> { %> 
               <li>
+                <form action="/delete/<%= task.id %>" method="get">
+                  <input type="checkbox" name="checkbox" onChange="this.form.submit()">
+                </form>
                 <div><p>Name: <%= task.name %></p></div>
                 <div><p>Due date: <%= task.dueDate %></p></div>
                 <div class="task-form">
