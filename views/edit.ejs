@@ -11,18 +11,19 @@
         <h1>To do</h1>
       </header>
       <main>
+        <p>Sort:<a href="/edit?id=<%= taskId %>&page=<%= currentPage %>&sort=asc">Asc</a> <a href="/edit?id=<%= taskId %>&page=<%= currentPage %>&sort=desc">Desc</a></p>
         <ul>
           <% if (tasks.length > 0) { %> <% tasks.forEach((task)=> { %>
           <li>
             <% if (taskId != task.id) { %>
-              <form action="/delete?id=<%= task.id %>&page=<%= currentPage %>" method="post">
+              <form action="/delete?id=<%= task.id %>&page=<%= currentPage %>&sort=<%= currentSort %>" method="post">
                 <input type="checkbox" name="checkbox" onChange="this.form.submit()">
               </form>
             <div><p>Name: <%= task.name %></p></div>
             <div><p>Due date: <%= task.dueDate %></p></div>
             <% } %>
               <% if (taskId == task.id) { %>
-              <form action="/edit?id=<%= task.id %>&page=<%= currentPage %>" method="post">
+              <form action="/edit?id=<%= task.id %>&page=<%= currentPage %>&sort=<%= currentSort %>" method="post">
                 <label for="editName">Name: </label>
                 <input
                   type="text"
@@ -38,12 +39,12 @@
                 />
                 <button type="submit">Save</button>
               </form>
-              <a href="/">Cancel</a>
+              <a href="/?page=<%= currentPage %>&sort=<%= currentSort %>">Cancel</a>
               <% } %> <% if (taskId != task.id) { %>
                 <div class="task-links">
-                  <a href="/edit?id=<%= task.id %>&page=<%= currentPage %>">Edit</a>
+                  <a href="/edit?id=<%= task.id %>&page=<%= currentPage %>&sort=<%= currentSort %>">Edit</a>
               <% } %>
-              <a href="/delete?id=<%= task.id %>&page=<%= currentPage %>">Delete</a>
+              <a href="/delete?id=<%= task.id %>&page=<%= currentPage %>&sort=<%= currentSort %>">Delete</a>
             </div>
           </li>
           <% });%> <% } else { %>
@@ -51,10 +52,10 @@
           <% } %>
         </ul>
         <% if (currentPage > 1) { %>
-          <a href="/?page=<%= currentPage - 1 %>"><< Previous page</a>
+          <a href="/?page=<%= currentPage - 1 %>&sort=<%= currentSort %>"><< Previous page</a>
           <% } %>
           <% if (currentPage < totalPages) { %>
-          <a href="/?page=<%= currentPage + 1 %>">Next page >></a>
+          <a href="/?page=<%= currentPage + 1 %>&sort=<%= currentSort %>">Next page >></a>
           <% } %>  
       </main>
       <footer><%- include ("addtask"); -%></footer>

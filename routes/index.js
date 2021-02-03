@@ -4,16 +4,18 @@ const Task = require("../model/Task");
 
 router.get("/", async (req, res) => {
   const page = +req.query.page || 1;
+  const sort = req.query.sort || "asc";
   const limit = 3;
 
   try {
     const tasks = await Task.find()
     .limit(limit * 1)
-    .skip((page - 1) * limit);
+    .skip((page - 1) * limit)
+    .sort({"dueDate": sort});
 
     const totalDocuments = await Task.countDocuments();
 
-    res.render("index.ejs", { tasks, totalPages: Math.ceil(totalDocuments / limit), currentPage: page});
+    res.render("index.ejs", { tasks, totalPages: Math.ceil(totalDocuments / limit), currentPage: page, currentSort: sort});
   } catch (err) {
     console.log(err);
   }
@@ -21,17 +23,19 @@ router.get("/", async (req, res) => {
 
 router.get("/edit", async (req, res) => {
   const page = +req.query.page || 1;
+  const sort = req.query.sort || "asc";
   const limit = 3;
 
   try {
     const tasks = await Task.find()
     .limit(limit * 1)
-    .skip((page - 1) * limit);
+    .skip((page - 1) * limit)
+    .sort({"dueDate": sort});
 
     const totalDocuments = await Task.countDocuments();
     const taskId = req.query.id;
     
-    res.render("edit.ejs", { tasks, taskId, totalPages: Math.ceil(totalDocuments / limit), currentPage: page });
+    res.render("edit.ejs", { tasks, taskId, totalPages: Math.ceil(totalDocuments / limit), currentPage: page, currentSort: sort });
   } catch (err) {
     console.log(err);
   }
@@ -56,13 +60,14 @@ router.post("/new", async (req, res) => {
 
 router.post("/edit", async (req, res) => {
   const page = +req.query.page || 1;
+  const sort = req.query.sort || "asc";
 
   try {
     const changedTask = await Task.updateOne(
       { _id: req.query.id },
       { name: req.body.editName, dueDate: req.body.editDate }
     );
-    res.redirect(301, "/?page=" + page);
+    res.redirect(301, "/?page=" + page + "&sort=" + sort);
   } catch (err) {
     console.log(err);
   }
@@ -70,11 +75,12 @@ router.post("/edit", async (req, res) => {
 
 router.get("/delete", async (req, res) => {
   const page = +req.query.page || 1;
+  const sort = req.query.sort || "asc";
 
   try {
     const id = req.query.id;
     await Task.deleteOne({_id:id});
-    res.redirect(301, "/?page=" + page);
+    res.redirect(301, "/?page=" + page + "&sort=" + sort);
   } catch (err) {
     console.log(err);
   }
@@ -83,11 +89,12 @@ router.get("/delete", async (req, res) => {
 // Temporary post route for form delete combined with id and pagination. To be removed once we have a link and span that resembles a checkbox.
 router.post("/delete", async (req, res) => {
   const page = +req.query.page || 1;
+  const sort = req.query.sort || "asc";
 
   try {
     const id = req.query.id;
     await Task.deleteOne({_id:id});
-    res.redirect(301, "/?page=" + page);
+    res.redirect(301, "/?page=" + page + "&sort=" + sort);
   } catch (err) {
     console.log(err);
   }
