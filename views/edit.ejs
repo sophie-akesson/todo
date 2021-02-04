@@ -27,8 +27,8 @@
                   <form action="/delete?id=<%= task.id %>&page=<%= currentPage %>&sort=<%= currentSort %>" method="post">
                     <input type="checkbox" name="checkbox" onChange="this.form.submit()">
                   </form>
-                <div><p>Name: <%= task.name %></p></div>
-                <div><p>Due date: <%= convertedDate %></p></div>
+                  <div><p>Name: <%= task.name %></p></div>
+                  <div><p>Due date: <%= convertedDate %></p></div>
                 <% } %>
                 <% if (taskId == task.id) { %>
                   <form action="/edit?id=<%= task.id %>&page=<%= currentPage %>&sort=<%= currentSort %>" method="post">
@@ -57,20 +57,17 @@
               </div>
             </li>
             <% });%>
-            <% } %>
-            <% if (currentPage > totalPages) { %>
-            <li>You have no tasks on this page. Please go to previous page.</li>
-            <% } %>
-            <% if (totalDocuments == 0) { %>
-              <li>You have no tasks.</li>
-            <% } %>
+          <% } %>
+          <% if (totalDocuments == 0) { %>
+            <li>You have no tasks.</li>
+          <% } %>
         </ul>
         <% if (currentPage > 1) { %>
           <a href="/?page=<%= currentPage - 1 %>&sort=<%= currentSort %>"><< Previous page</a>
-          <% } %>
-          <% if (currentPage < totalPages) { %>
+        <% } %>
+        <% if (currentPage < totalPages) { %>
           <a href="/?page=<%= currentPage + 1 %>&sort=<%= currentSort %>">Next page >></a>
-          <% } %>  
+        <% } %>  
       </main>
       <footer><%- include ("addtask"); -%></footer>
     </div>
