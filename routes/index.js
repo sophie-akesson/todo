@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
 
     res.render("index.ejs", { tasks, totalPages: Math.ceil(totalDocuments / limit), currentPage: page, currentSort: sort});
   } catch (err) {
-    console.log(err);
+    res.render("error.ejs", { err });
   }
 });
 
@@ -37,12 +37,14 @@ router.get("/edit", async (req, res) => {
     
     res.render("edit.ejs", { tasks, taskId, totalPages: Math.ceil(totalDocuments / limit), currentPage: page, currentSort: sort });
   } catch (err) {
-    console.log(err);
+    res.render("error.ejs", { err });
   }
 });
 
 router.post("/new", async (req, res) => {
   const page = +req.query.page || 1;
+  const sort = req.query.sort || "asc";
+  const limit = 3;
 
   try {
     const newTask = new Task({
@@ -50,11 +52,15 @@ router.post("/new", async (req, res) => {
       dueDate: req.body.dateInput,
     });
     const savedTask = await newTask.save();
-    res.redirect(301, "/?page=" + page);
+    res.redirect(301, "/?page=" + page + "&sort=" + sort);
   } catch (err) {
-    const tasks = await Task.find();
-    res.render("index.ejs", { tasks, message: err });
-    console.log(err);
+    const tasks = await Task.find()
+    .limit(limit * 1)
+    .skip((page - 1) * limit)
+    .sort({"dueDate": sort});
+
+    const totalDocuments = await Task.countDocuments();
+    res.render("index.ejs", { tasks, message: err, totalPages: Math.ceil(totalDocuments / limit), currentPage: page, currentSort: sort });
   }
 });
 
@@ -69,7 +75,7 @@ router.post("/edit", async (req, res) => {
     );
     res.redirect(301, "/?page=" + page + "&sort=" + sort);
   } catch (err) {
-    console.log(err);
+    res.render("error.ejs", { err });
   }
 });
 
@@ -82,7 +88,7 @@ router.get("/delete", async (req, res) => {
     await Task.deleteOne({_id:id});
     res.redirect(301, "/?page=" + page + "&sort=" + sort);
   } catch (err) {
-    console.log(err);
+    res.render("error.ejs", { err });
   }
 });
 
@@ -96,8 +102,12 @@ router.post("/delete", async (req, res) => {
     await Task.deleteOne({_id:id});
     res.redirect(301, "/?page=" + page + "&sort=" + sort);
   } catch (err) {
-    console.log(err);
+    res.render("error.ejs", { err });
   }
+});
+
+router.get("*", (req, res) => {
+  res.render("error.ejs", { err: "Sorry the page you're looking for does not exist." });
 });
 
 module.exports = router;
