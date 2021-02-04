@@ -15,21 +15,32 @@
         <ul>
           <% if (tasks.length > 0) { %>
             <% tasks.forEach((task)=> { %> 
+              <% const date = task.dueDate; %>
+              <% const year = date.getFullYear(); %>
+              <% let month = date.getMonth() + 1; %>
+              <% if (month < 10) { month = '0' + month; } %>
+              <% let day = date.getDate(); %>
+              <% if (day < 10) { day = '0' + day; } %>
+              <% let convertedDate = `${year}-${month}-${day}`; %>
               <li>
                 <form action="/delete?id=<%= task.id %>&page=<%= currentPage %>&sort=<%= currentSort %>" method="post">
                   <input type="checkbox" name="checkbox" onChange="this.form.submit()">
                 </form>
                 <div><p>Name: <%= task.name %></p></div>
-                <div><p>Due date: <%= task.dueDate %></p></div>
+                <div><p>Due date: <%= convertedDate %></p></div>
                 <div class="task-links">
                   <a href="/edit?id=<%= task.id %>&page=<%= currentPage %>&sort=<%= currentSort %>">Edit</a>
                   <a href="/delete?id=<%= task.id %>&page=<%= currentPage %>&sort=<%= currentSort %>">Delete</a>
                 </div>
               </li>
             <% });%>
-          <% } else { %>
-            <li>You have no tasks.</li>
-          <% } %>
+            <% } %>
+            <% if (currentPage > totalPages) { %>
+              <li>You have no tasks on this page. Please go to previous page.</li>
+              <% } %>
+              <% if (totalDocuments == 0) { %>
+                <li>You have no tasks.</li>
+                <% } %>
         </ul>
         <% if (currentPage > 1) { %>
         <a href="/?page=<%= currentPage - 1 %>&sort=<%= currentSort %>"><< Previous page</a>
