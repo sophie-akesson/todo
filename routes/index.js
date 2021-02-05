@@ -9,13 +9,19 @@ router.get("/", async (req, res) => {
 
   try {
     const tasks = await Task.find()
-    .limit(limit * 1)
-    .skip((page - 1) * limit)
-    .sort({"dueDate": sort});
+      .limit(limit * 1)
+      .skip((page - 1) * limit)
+      .sort({ dueDate: sort });
 
     const totalDocuments = await Task.countDocuments();
 
-    res.render("index.ejs", { tasks, totalPages: Math.ceil(totalDocuments / limit), currentPage: page, currentSort: sort, totalDocuments});
+    res.render("index.ejs", {
+      tasks,
+      totalPages: Math.ceil(totalDocuments / limit),
+      currentPage: page,
+      currentSort: sort,
+      totalDocuments,
+    });
   } catch (err) {
     res.render("error.ejs", { err });
   }
@@ -28,14 +34,21 @@ router.get("/edit", async (req, res) => {
 
   try {
     const tasks = await Task.find()
-    .limit(limit * 1)
-    .skip((page - 1) * limit)
-    .sort({"dueDate": sort});
+      .limit(limit * 1)
+      .skip((page - 1) * limit)
+      .sort({ dueDate: sort });
 
     const totalDocuments = await Task.countDocuments();
     const taskId = req.query.id;
-    
-    res.render("edit.ejs", { tasks, taskId, totalPages: Math.ceil(totalDocuments / limit), currentPage: page, currentSort: sort, totalDocuments });
+
+    res.render("edit.ejs", {
+      tasks,
+      taskId,
+      totalPages: Math.ceil(totalDocuments / limit),
+      currentPage: page,
+      currentSort: sort,
+      totalDocuments,
+    });
   } catch (err) {
     res.render("error.ejs", { err });
   }
@@ -62,6 +75,9 @@ router.post("/new", async (req, res) => {
   const limit = 3;
 
   try {
+    if (req.body.nameInput === "New task") {
+      throw "Please pick a name for your task.";
+    }
     const newTask = new Task({
       name: req.body.nameInput,
       dueDate: req.body.dateInput,
@@ -70,12 +86,19 @@ router.post("/new", async (req, res) => {
     res.redirect(301, "/?page=" + page + "&sort=" + sort);
   } catch (err) {
     const tasks = await Task.find()
-    .limit(limit * 1)
-    .skip((page - 1) * limit)
-    .sort({"dueDate": sort});
+      .limit(limit * 1)
+      .skip((page - 1) * limit)
+      .sort({ dueDate: sort });
 
     const totalDocuments = await Task.countDocuments();
-    res.render("index.ejs", { tasks, message: err, totalPages: Math.ceil(totalDocuments / limit), currentPage: page, currentSort: sort });
+    res.render("index.ejs", {
+      tasks,
+      message: err,
+      totalPages: Math.ceil(totalDocuments / limit),
+      currentPage: page,
+      currentSort: sort,
+      totalDocuments,
+    });
   }
 });
 
@@ -85,7 +108,7 @@ router.get("/delete", async (req, res) => {
 
   try {
     const id = req.query.id;
-    await Task.deleteOne({_id:id});
+    await Task.deleteOne({ _id: id });
     res.redirect(301, "/?page=" + page + "&sort=" + sort);
   } catch (err) {
     res.render("error.ejs", { err });
@@ -99,7 +122,7 @@ router.post("/delete", async (req, res) => {
 
   try {
     const id = req.query.id;
-    await Task.deleteOne({_id:id});
+    await Task.deleteOne({ _id: id });
     res.redirect(301, "/?page=" + page + "&sort=" + sort);
   } catch (err) {
     res.render("error.ejs", { err });
@@ -107,7 +130,9 @@ router.post("/delete", async (req, res) => {
 });
 
 router.get("*", (req, res) => {
-  res.render("error.ejs", { err: "Sorry the page you're looking for does not exist." });
+  res.render("error.ejs", {
+    err: "Sorry the page you're looking for does not exist.",
+  });
 });
 
 module.exports = router;

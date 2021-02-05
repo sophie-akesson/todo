@@ -4,14 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To do</title>
+    <script src="https://kit.fontawesome.com/0ae8c6af08.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/style/main.css">
   </head>
   <body>
     <div id="container">
       <header>
         <h1>To do</h1>
+        <p>Date sort: <a href="/edit?id=<%= taskId %>&page=<%= currentPage %>&sort=asc">Asc</a> <a href="/edit?id=<%= taskId %>&page=<%= currentPage %>&sort=desc">Desc</a></p>
       </header>
       <main>
-        <p>Sort:<a href="/edit?id=<%= taskId %>&page=<%= currentPage %>&sort=asc">Asc</a> <a href="/edit?id=<%= taskId %>&page=<%= currentPage %>&sort=desc">Desc</a></p>
         <ul>
           <% if (tasks.length > 0) { %>
             <% tasks.forEach((task)=> { %>
@@ -24,37 +26,38 @@
               <% let convertedDate = `${year}-${month}-${day}`; %>
               <li>
                 <% if (taskId != task.id) { %>
-                  <form action="/delete?id=<%= task.id %>&page=<%= currentPage %>&sort=<%= currentSort %>" method="post">
+                  <form class="delete-form" action="/delete?id=<%= task.id %>&page=<%= currentPage %>&sort=<%= currentSort %>" method="post">
                     <input type="checkbox" name="checkbox" onChange="this.form.submit()">
                   </form>
-                  <div><p>Name: <%= task.name %></p></div>
-                  <div><p>Due date: <%= convertedDate %></p></div>
+                  <p><%= task.name %></p>
+                  <div>
+                    <p>Due: <%= convertedDate %></p>
+                    <div class="task-links">
+                      <a href="/edit?id=<%= task.id %>&page=<%= currentPage %>&sort=<%= currentSort %>"><i class="far fa-edit fa-lg"></i></a>
+                      <a href="/delete?id=<%= task.id %>&page=<%= currentPage %>&sort=<%= currentSort %>"><i class="fas fa-times-circle fa-lg"></i></a>
+                    </div>
+                  </div>
                 <% } %>
                 <% if (taskId == task.id) { %>
-                  <form action="/edit?id=<%= task.id %>&page=<%= currentPage %>&sort=<%= currentSort %>" method="post">
-                    <label for="editName">Name: </label>
+                  <form class="edit-form" action="/edit?id=<%= task.id %>&page=<%= currentPage %>&sort=<%= currentSort %>" method="post">
+                    <div>
+                      <label for="editName">Task: </label>
+                    <input type="text" name="editName" id="editName" value="<%= task.name %>">
+                    </div>
+                    <div>
+                      <label for="editDate">Due: </label>
                     <input
-                      type="text"
-                      name="editName"
-                      id="editName"
-                      value="<%= task.name %>"
-                    />
-                    <label for="editDate">Due date: </label>
-                    <input
-                      type="date"
+                      type="date" 
                       name="editDate"
                       value="<%= convertedDate %>"
                     />
-                    <button type="submit">Save</button>
+                    </div>
+                    <div>
+                      <a href="/?page=<%= currentPage %>&sort=<%= currentSort %>">Cancel</a>
+                      <button class="save-button" type="submit">Save</button>
+                    </div>
                   </form>
-                  <a href="/?page=<%= currentPage %>&sort=<%= currentSort %>">Cancel</a>
                 <% } %>
-                <% if (taskId != task.id) { %>
-                  <div class="task-links">
-                    <a href="/edit?id=<%= task.id %>&page=<%= currentPage %>&sort=<%= currentSort %>">Edit</a>
-                <% } %>
-                <a href="/delete?id=<%= task.id %>&page=<%= currentPage %>&sort=<%= currentSort %>">Delete</a>
-              </div>
             </li>
             <% });%>
           <% } %>
@@ -62,12 +65,14 @@
             <li>You have no tasks.</li>
           <% } %>
         </ul>
+        <div class="pages-div">
         <% if (currentPage > 1) { %>
           <a href="/?page=<%= currentPage - 1 %>&sort=<%= currentSort %>"><< Previous page</a>
         <% } %>
         <% if (currentPage < totalPages) { %>
           <a href="/?page=<%= currentPage + 1 %>&sort=<%= currentSort %>">Next page >></a>
         <% } %>  
+        </div>
       </main>
       <footer><%- include ("addtask"); -%></footer>
     </div>

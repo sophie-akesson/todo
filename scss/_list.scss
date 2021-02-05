@@ -1,0 +1,83 @@
+ul {
+    padding-left: 0;
+    list-style-type: none;
+    
+    li {
+      padding: 1rem;
+      background-color: white;
+      box-shadow: 3px 3px 9px rgba($color: #000000, $alpha: 0.3);
+      color: rgb(80, 80, 80);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      border-radius: 5px;
+      li:last-child {
+        margin-bottom: 0;
+      }
+      p {
+        margin: 0;
+      }
+    }
+    li > p:nth-child(2) {
+      width: 16rem;
+      margin-right: 1rem;
+    }
+    li > .delete-form {
+      width: 3.5rem;
+    }
+
+    li .edit-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      input {
+        width: 100%;
+        font-family: "Montserrat", sans-serif;
+        height: 4rem;
+        border: none;
+        background-color: rgb(255, 199, 161);
+        border-radius: 3px;
+        margin-bottom: 1rem;
+        padding: 1rem;
+      }
+      input:focus {
+        outline: none;
+        background-color: rgb(153, 163, 192);
+      }
+      div:nth-child(3) {
+        display: flex;
+        justify-content: space-between;
+        button {
+          font-family: "Montserrat", sans-serif;
+          background-color: white;
+          border: 0;
+          text-decoration: underline;
+          font-size: 1.5rem;
+        }
+        button:hover {
+          color: rgb(255, 199, 161);
+        }
+      }
+    }
+
+    li > div > .task-links {
+      display: flex;
+      justify-content: flex-end;
+      a {
+        padding-top: 1rem;
+        padding-left: 1rem;
+        color: rgb(80, 80, 80);
+      }
+    }
+  }
+
+@media (min-width: 768px) {
+    ul {
+      li > p:nth-child(2) {
+        width: 34rem;
+        margin-right: 1rem;
+      }
+    }
+  }
