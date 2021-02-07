@@ -3,7 +3,7 @@ ul {
     list-style-type: none;
     
     li {
-      padding: 1rem;
+      padding: 2rem;
       background-color: white;
       box-shadow: 3px 3px 9px rgba($color: #000000, $alpha: 0.3);
       color: rgb(80, 80, 80);
@@ -20,7 +20,7 @@ ul {
       }
     }
     li > p:nth-child(2) {
-      width: 16rem;
+      width: 14rem;
       margin-right: 1rem;
     }
     li > .delete-form {
@@ -37,14 +37,14 @@ ul {
         font-family: "Montserrat", sans-serif;
         height: 4rem;
         border: none;
-        background-color: rgb(255, 199, 161);
+        background-color: $accent-color;
         border-radius: 3px;
         margin-bottom: 1rem;
         padding: 1rem;
       }
       input:focus {
         outline: none;
-        background-color: rgb(153, 163, 192);
+        background-color: $secondary-color;
       }
       div:nth-child(3) {
         display: flex;
@@ -57,7 +57,7 @@ ul {
           font-size: 1.5rem;
         }
         button:hover {
-          color: rgb(255, 199, 161);
+          color: $accent-color;
         }
       }
     }
@@ -76,8 +76,15 @@ ul {
 @media (min-width: 768px) {
     ul {
       li > p:nth-child(2) {
-        width: 34rem;
+        width: 26rem;
         margin-right: 1rem;
+      }
+      li > div {
+        display: flex;
+        align-items: center;
+        .task-links a {
+          padding-top: 0;
+        }
       }
     }
   }

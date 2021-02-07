@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import "variables";
 @import "list";
 
 * {
@@ -29,6 +30,9 @@ header {
   box-shadow: 3px 3px 9px rgba($color: #000000, $alpha: 0.3);
   border-radius: 5px;
   padding: 1rem;
+  #home-link {
+    text-decoration: none;
+  }
 }
 
 a:link,
@@ -38,7 +42,7 @@ a:focus {
 }
 
 a:hover {
-  color: rgb(255, 199, 161);
+  color: $accent-color;
 }
 
 #container {
@@ -53,7 +57,7 @@ a:hover {
   }
 
   i:hover {
-    color: rgb(255, 199, 161);
+    color: $accent-color;
   }
 }
 
@@ -87,26 +91,23 @@ footer {
     font-family: "Montserrat", sans-serif;
     height: 4rem;
     border: none;
-    background-color: rgb(255, 199, 161);
+    background-color: $accent-color;
     border-radius: 3px;
     margin-bottom: 1rem;
     padding: 1rem;
   }
   input:focus {
     outline: none;
-    background-color: rgb(153, 163, 192);
+    background-color: $secondary-color;
   }
   button {
     background-color: transparent;
     border: 0;
     outline: none;
   }
-//   button:active, button:focus {
-//     outline: none;
-//   }
 
   i, p {
-      color: white;
+      color: $secondary-color;
       text-align: center;
   }
 }

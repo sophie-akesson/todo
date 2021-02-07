@@ -3,7 +3,7 @@ ul {
   padding-left: 0;
   list-style-type: none; }
   ul li {
-    padding: 1rem;
+    padding: 2rem;
     background-color: white;
     box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.3);
     color: #505050;
@@ -17,7 +17,7 @@ ul {
     ul li p {
       margin: 0; }
   ul li > p:nth-child(2) {
-    width: 16rem;
+    width: 14rem;
     margin-right: 1rem; }
   ul li > .delete-form {
     width: 3.5rem; }
@@ -31,13 +31,13 @@ ul {
       font-family: "Montserrat", sans-serif;
       height: 4rem;
       border: none;
-      background-color: #ffc7a1;
+      background-color: #ffc3ac;
       border-radius: 3px;
       margin-bottom: 1rem;
       padding: 1rem; }
     ul li .edit-form input:focus {
       outline: none;
-      background-color: #99a3c0; }
+      background-color: #b2cecc; }
     ul li .edit-form div:nth-child(3) {
       display: flex;
       justify-content: space-between; }
@@ -48,7 +48,7 @@ ul {
         text-decoration: underline;
         font-size: 1.5rem; }
       ul li .edit-form div:nth-child(3) button:hover {
-        color: #ffc7a1; }
+        color: #ffc3ac; }
   ul li > div > .task-links {
     display: flex;
     justify-content: flex-end; }
@@ -59,8 +59,13 @@ ul {
 
 @media (min-width: 768px) {
   ul li > p:nth-child(2) {
-    width: 34rem;
-    margin-right: 1rem; } }
+    width: 26rem;
+    margin-right: 1rem; }
+  ul li > div {
+    display: flex;
+    align-items: center; }
+    ul li > div .task-links a {
+      padding-top: 0; } }
 
 * {
   box-sizing: border-box; }
@@ -87,6 +92,8 @@ header {
   box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
   padding: 1rem; }
+  header #home-link {
+    text-decoration: none; }
 
 a:link,
 a:visited,
@@ -94,7 +101,7 @@ a:focus {
   color: #505050; }
 
 a:hover {
-  color: #ffc7a1; }
+  color: #ffc3ac; }
 
 #container {
   padding: 1rem;
@@ -106,7 +113,7 @@ a:hover {
   #container h1 {
     margin: 0; }
   #container i:hover {
-    color: #ffc7a1; }
+    color: #ffc3ac; }
 
 .pages-div {
   display: flex;
@@ -133,19 +140,19 @@ footer {
     font-family: "Montserrat", sans-serif;
     height: 4rem;
     border: none;
-    background-color: #ffc7a1;
+    background-color: #ffc3ac;
     border-radius: 3px;
     margin-bottom: 1rem;
     padding: 1rem; }
   .add-div input:focus {
     outline: none;
-    background-color: #99a3c0; }
+    background-color: #b2cecc; }
   .add-div button {
     background-color: transparent;
     border: 0;
     outline: none; }
   .add-div i, .add-div p {
-    color: white;
+    color: #b2cecc;
     text-align: center; }
 
 @media (min-width: 768px) {
