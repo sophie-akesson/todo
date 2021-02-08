@@ -129,3 +129,18 @@ a:hover {
     margin-top: 3%;
   }
 }
+
+#error-ul {
+  li {
+    display: flex;
+    align-items: flex-start;
+    h2, p {
+      margin: 0;
+      margin-right: 1rem;
+    }
+    a {
+      min-width: 7rem;
+      margin-right: 0;
+    }
+  }
+}

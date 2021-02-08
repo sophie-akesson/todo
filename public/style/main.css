@@ -180,3 +180,13 @@ a:hover {
 @media (min-width: 768px) {
   #container {
     margin-top: 3%; } }
+
+#error-ul li {
+  display: flex;
+  align-items: flex-start; }
+  #error-ul li h2, #error-ul li p {
+    margin: 0;
+    margin-right: 1rem; }
+  #error-ul li a {
+    min-width: 7rem;
+    margin-right: 0; }
