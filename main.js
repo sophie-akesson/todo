@@ -29,7 +29,7 @@ mongoose.connect(
     if (err) return;
     console.log("Connected to DB!");
 
-    app.listen(process.env.PORT, () => {
+    app.listen(process.env.PORT || 3000, () => {
       console.log("Server up on port 3000");
     });
   }
