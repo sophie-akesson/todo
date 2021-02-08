@@ -1,0 +1,15 @@
+<div class="add-div">
+    <form action="/new?page=<%= currentPage %>&sort=<%= currentSort %>" method="post">
+        <input type="text" name="nameInput" id="nameInput" value="New task">
+        <% let now = new Date(); %>
+        <% let dd = String(now.getDate()).padStart(2, "0"); %>
+        <% let mm = String(now.getMonth() + 1).padStart(2, "0"); %>
+        <% let yyyy = now.getFullYear(); %>
+        <% let defaultDate = `${yyyy}-${mm}-${dd}`; %>
+        <input type="date" name="dateInput" value="<%= defaultDate %>">
+        <button type="submit"><i class="fas fa-plus-circle fa-2x"></i></button>
+    </form>
+    <% if (typeof message != "undefined") {%>
+        <p>Cannot add new task: <%= message %></p>
+    <% } %>
+</div>
