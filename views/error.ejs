@@ -3,13 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/0ae8c6af08.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/style/main.css">
     <title>To do</title>
   </head>
   <body>
     <div id="container">
-      <h1>Error</h1>
-      <p><%= err %></p>
-      <a href="javascript:history.back()"><< Go Back</a>
+      <main>
+        <ul id="error-ul">
+          <li><p><strong>Error:</strong></p>
+            <p><%= err %></p>
+            <a href="javascript:history.back()">Go Back</a>
+          </li>  
+      </main>
     </div>
   </body>
 </html>
