@@ -1,0 +1,182 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+ul {
+  padding-left: 0;
+  list-style-type: none;
+  background-color: white;
+  border-radius: 5px; }
+  ul li {
+    padding: 2rem;
+    color: #505050;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e6e6e6; }
+  ul li:last-child {
+    border-bottom: none; }
+  ul li:hover {
+    border-left: 1rem solid #ffc88a;
+    padding-left: 1rem;
+    cursor: pointer; }
+    ul li:hover label {
+      cursor: pointer; }
+  ul li:first-child:hover {
+    border-radius: 5px 0px 0px 0px; }
+  ul li:last-child:hover {
+    border-radius: 0px 0px 0px 5px; }
+  ul .delete-form {
+    margin-right: auto; }
+    ul .delete-form label,
+    ul .delete-form input {
+      display: flex; }
+    ul .delete-form input {
+      align-self: center;
+      margin-right: 2rem; }
+  ul li > div {
+    margin-left: 1rem; }
+    ul li > div p {
+      min-width: 12rem;
+      margin: 0; }
+  ul li .edit-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; }
+    ul li .edit-form input {
+      width: 100%;
+      font-family: "Montserrat", sans-serif;
+      height: 4rem;
+      border: none;
+      background-color: #ffc88a;
+      border-radius: 3px;
+      margin-bottom: 2rem;
+      padding: 1rem; }
+    ul li .edit-form input:focus {
+      outline: none;
+      background-color: #00bfc5; }
+    ul li .edit-form div:nth-child(3) {
+      display: flex;
+      justify-content: space-between; }
+      ul li .edit-form div:nth-child(3) button {
+        font-weight: bold;
+        font-family: "Montserrat", sans-serif;
+        background-color: white;
+        color: #505050;
+        border: 0;
+        font-size: 1.5rem; }
+      ul li .edit-form div:nth-child(3) button:hover {
+        cursor: pointer;
+        color: #00bfc5; }
+  ul li > div > .task-links {
+    display: flex;
+    justify-content: flex-end; }
+    ul li > div > .task-links a {
+      padding-top: 1rem;
+      padding-left: 1rem; }
+
+@media (min-width: 768px) {
+  ul li > div {
+    display: flex; }
+    ul li > div .task-links a {
+      padding-top: 0; } }
+
+* {
+  box-sizing: border-box; }
+
+html {
+  font-size: 62.5%; }
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+  margin: 0;
+  padding: 0;
+  background-image: url("/images/background.jpg");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh; }
+
+header {
+  background-color: white;
+  color: #414141;
+  border-radius: 5px;
+  padding: 2rem; }
+
+a:link,
+a:visited,
+a:focus {
+  text-decoration: none;
+  font-weight: bold;
+  color: #505050; }
+
+a:hover {
+  color: #00bfc5; }
+
+#container {
+  padding: 1rem;
+  max-width: 550px;
+  width: 100%; }
+  #container h1 {
+    margin: 0; }
+
+.pages-div {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  border-radius: 5px; }
+  .pages-div #next-link {
+    padding-right: 2rem; }
+  .pages-div #previous-link {
+    padding-left: 2rem; }
+  .pages-div #next-link:hover {
+    border-radius: 0px 5px 5px 0px;
+    padding-top: 1.1rem;
+    height: 4rem;
+    padding-right: 1rem;
+    border-right: 1rem solid #ffc88a; }
+  .pages-div #previous-link:hover {
+    border-radius: 5px 0px 0px 5px;
+    padding-top: 1.1rem;
+    height: 4rem;
+    padding-left: 1rem;
+    border-left: 1rem solid #ffc88a; }
+
+.add-div {
+  background-color: white;
+  border-radius: 5px;
+  padding: 2rem;
+  margin-top: 1.5rem; }
+  .add-div form {
+    display: flex;
+    flex-direction: column; }
+  .add-div input {
+    width: 100%;
+    font-family: "Montserrat", sans-serif;
+    height: 4rem;
+    border: none;
+    background-color: #ffc88a;
+    border-radius: 3px;
+    margin-bottom: 2rem;
+    padding: 1rem; }
+  .add-div input:focus {
+    outline: none;
+    background-color: #00bfc5; }
+  .add-div button {
+    background-color: transparent;
+    border: 0;
+    outline: none; }
+  .add-div i,
+  .add-div p {
+    cursor: pointer;
+    color: #00bfc5;
+    text-align: center; }
+  .add-div i:hover {
+    color: #ffc88a; }
+
+@media (min-width: 768px) {
+  #container {
+    margin-top: 3%; } }
