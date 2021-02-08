@@ -133,7 +133,7 @@ a:hover {
 #error-ul {
   li {
     display: flex;
-    align-items: flex-start;
+    justify-content: space-between;
     h2, p {
       margin: 0;
       margin-right: 1rem;
@@ -142,5 +142,9 @@ a:hover {
       min-width: 7rem;
       margin-right: 0;
     }
+  }
+  li:hover {
+    border: none;
+    margin-left: 1rem;
   }
 }
