@@ -16,10 +16,11 @@ body {
   margin: 0;
   padding: 0;
   background-image: url("/images/background.jpg");
+  background-position: center;
   background-size: cover;
+  background-attachment: fixed;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
   height: 100vh;
 }
@@ -27,63 +28,69 @@ body {
 header {
   background-color: white;
   color: rgb(65, 65, 65);
-  box-shadow: 3px 3px 9px rgba($color: #000000, $alpha: 0.3);
   border-radius: 5px;
-  padding: 1rem;
-  #home-link {
-    text-decoration: none;
-  }
+  padding: 2rem;
 }
 
 a:link,
 a:visited,
 a:focus {
+  text-decoration: none;
+  font-weight: bold;
   color: rgb(80, 80, 80);
 }
 
 a:hover {
-  color: $accent-color;
+  color: $secondary-color;
 }
 
 #container {
   padding: 1rem;
   max-width: 550px;
   width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
   h1 {
     margin: 0;
-  }
-
-  i:hover {
-    color: $accent-color;
   }
 }
 
 .pages-div {
+  height: 4rem;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   background-color: white;
   border-radius: 5px;
-  padding: 1rem;
-}
-
-footer {
-  margin-top: auto;
+  #next-link {
+    padding-right: 2rem;
+  }
+  #previous-link {
+    padding-left: 2rem;
+  }
+  #next-link:hover {
+    border-radius: 0px 5px 5px 0px;
+    padding-top: 1.1rem;
+    height: 4rem;
+    padding-right: 1rem;
+    border-right: 1rem solid $accent-color;
+  }
+  #previous-link:hover {
+    border-radius: 5px 0px 0px 5px;
+    padding-top: 1.1rem;
+    height: 4rem;
+    padding-left: 1rem;
+    border-left: 1rem solid $accent-color;
+  }
 }
 
 .add-div {
-  background-color: rgba($color: #000000, $alpha: 0.3);
+  background-color: white;
   border-radius: 5px;
-  padding: 1rem;
+  padding: 2rem;
   margin-top: 1.5rem;
-  color: white;
 
   form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
   }
 
   input {
@@ -93,7 +100,7 @@ footer {
     border: none;
     background-color: $accent-color;
     border-radius: 3px;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     padding: 1rem;
   }
   input:focus {
@@ -106,17 +113,19 @@ footer {
     outline: none;
   }
 
-  i, p {
-      color: $secondary-color;
-      text-align: center;
+  i,
+  p {
+    cursor: pointer;
+    color: $secondary-color;
+    text-align: center;
+  }
+  i:hover {
+    color: $accent-color;
   }
 }
 
 @media (min-width: 768px) {
   #container {
-    margin-top: 10rem;
-  }
-  footer {
-    margin-top: 0;
+    margin-top: 3%;
   }
 }

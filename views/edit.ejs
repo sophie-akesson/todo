@@ -27,9 +27,8 @@
               <li>
                 <% if (taskId != task.id) { %>
                   <form class="delete-form" action="/delete?id=<%= task.id %>&page=<%= currentPage %>&sort=<%= currentSort %>" method="post">
-                    <input type="checkbox" name="checkbox" onChange="this.form.submit()">
+                    <label><input type="checkbox" name="checkbox" onChange="this.form.submit()"><%= task.name %></label>
                   </form>
-                  <p><%= task.name %></p>
                   <div>
                     <p>Due: <%= convertedDate %></p>
                     <div class="task-links">
@@ -67,10 +66,12 @@
         </ul>
         <div class="pages-div">
         <% if (currentPage > 1) { %>
-          <a href="/?page=<%= currentPage - 1 %>&sort=<%= currentSort %>"><< Previous page</a>
-        <% } %>
+          <a id="previous-link" href="/?page=<%= currentPage - 1 %>&sort=<%= currentSort %>">Previous page</a>
+          <% } else { %>
+            <div></div>
+          <% } %>
         <% if (currentPage < totalPages) { %>
-          <a href="/?page=<%= currentPage + 1 %>&sort=<%= currentSort %>">Next page >></a>
+          <a id="next-link" href="/?page=<%= currentPage + 1 %>&sort=<%= currentSort %>">Next page</a>
         <% } %>  
         </div>
       </main>

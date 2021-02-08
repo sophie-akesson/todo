@@ -1,90 +1,105 @@
 ul {
-    padding-left: 0;
-    list-style-type: none;
-    
-    li {
-      padding: 2rem;
-      background-color: white;
-      box-shadow: 3px 3px 9px rgba($color: #000000, $alpha: 0.3);
-      color: rgb(80, 80, 80);
+  padding-left: 0;
+  list-style-type: none;
+  background-color: white;
+  border-radius: 5px;
+  li {
+    padding: 2rem;
+    color: rgb(80, 80, 80);
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba($color: #e6e6e6, $alpha: 1);
+  }
+  li:last-child {
+    border-bottom: none;
+  }
+  li:hover {
+    border-left: 1rem solid $accent-color;
+    padding-left: 1rem;
+    cursor: pointer;
+    label {
+      cursor: pointer;
+    }
+  }
+  li:first-child:hover {
+    border-radius: 5px 0px 0px 0px;
+  }
+  li:last-child:hover {
+    border-radius: 0px 0px 0px 5px;
+  }
+  .delete-form {
+    margin-right: auto;
+    label,
+    input {
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-bottom: 0.5rem;
-      border-radius: 5px;
-      li:last-child {
-        margin-bottom: 0;
-      }
-      p {
-        margin: 0;
-      }
     }
-    li > p:nth-child(2) {
-      width: 14rem;
-      margin-right: 1rem;
+    input {
+      align-self: center;
+      margin-right: 2rem;
     }
-    li > .delete-form {
-      width: 3.5rem;
+  }
+  li > div {
+    margin-left: 1rem;
+    p {
+      min-width: 12rem;
+      margin: 0;
     }
+  }
 
-    li .edit-form {
+  li .edit-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    input {
       width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      input {
-        width: 100%;
-        font-family: "Montserrat", sans-serif;
-        height: 4rem;
-        border: none;
-        background-color: $accent-color;
-        border-radius: 3px;
-        margin-bottom: 1rem;
-        padding: 1rem;
-      }
-      input:focus {
-        outline: none;
-        background-color: $secondary-color;
-      }
-      div:nth-child(3) {
-        display: flex;
-        justify-content: space-between;
-        button {
-          font-family: "Montserrat", sans-serif;
-          background-color: white;
-          border: 0;
-          text-decoration: underline;
-          font-size: 1.5rem;
-        }
-        button:hover {
-          color: $accent-color;
-        }
-      }
+      font-family: "Montserrat", sans-serif;
+      height: 4rem;
+      border: none;
+      background-color: $accent-color;
+      border-radius: 3px;
+      margin-bottom: 2rem;
+      padding: 1rem;
     }
-
-    li > div > .task-links {
+    input:focus {
+      outline: none;
+      background-color: $secondary-color;
+    }
+    div:nth-child(3) {
       display: flex;
-      justify-content: flex-end;
-      a {
-        padding-top: 1rem;
-        padding-left: 1rem;
+      justify-content: space-between;
+      button {
+        font-weight: bold;
+        font-family: "Montserrat", sans-serif;
+        background-color: white;
         color: rgb(80, 80, 80);
+        border: 0;
+        font-size: 1.5rem;
+      }
+      button:hover {
+        cursor: pointer;
+        color: $secondary-color;
       }
     }
   }
+
+  li > div > .task-links {
+    display: flex;
+    justify-content: flex-end;
+    a {
+      padding-top: 1rem;
+      padding-left: 1rem;
+    }
+  }
+}
 
 @media (min-width: 768px) {
-    ul {
-      li > p:nth-child(2) {
-        width: 26rem;
-        margin-right: 1rem;
-      }
-      li > div {
-        display: flex;
-        align-items: center;
-        .task-links a {
-          padding-top: 0;
-        }
+  ul {
+    li > div {
+      display: flex;
+      .task-links a {
+        padding-top: 0;
       }
     }
   }
+}
