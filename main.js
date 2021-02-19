@@ -12,9 +12,10 @@ app.use(
     src: __dirname + "/scss",
     dest: __dirname + "/public/style",
     prefix: "/style",
-  }),
-  express.static(__dirname + "/public")
-);
+  }));
+
+app.use(express.static(__dirname + "/public"));
+
 app.use(express.urlencoded({ extended: true }));
 
 app.set("views", __dirname + "/views");
