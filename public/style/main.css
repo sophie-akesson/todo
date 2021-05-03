@@ -189,3 +189,7 @@ a:hover {
   #error-ul li a {
     min-width: 7rem;
     margin-right: 0; }
+
+#error-ul li:hover {
+  border: none;
+  margin-left: 1rem; }
